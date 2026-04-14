@@ -1,143 +1,826 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Riverside Luxe Retreats</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{
+      --navy:#0b2342;
+      --navy-2:#0f2d55;
+      --cream:#f6f2eb;
+      --text:#142235;
+      --muted:#677486;
+      --line:#d9d4cb;
+      --white:#ffffff;
+      --shadow:0 10px 30px rgba(11,35,66,.12);
+      --radius:18px;
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0b1a2a;
-      color: white;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:'Inter',sans-serif;
+      color:var(--text);
+      background:#eee8df;
+    }
+    img{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+
+    .site{
+      max-width:1440px;
+      margin:0 auto;
+      background:var(--cream);
+      box-shadow:0 0 0 1px rgba(0,0,0,.03);
     }
 
-    header {
-      position: fixed;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background: rgba(0,0,0,0.4);
-      z-index: 100;
+    /* Top nav */
+    .topbar{
+      background:#fff;
+      border-bottom:1px solid #e7e2da;
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+    .nav{
+      min-height:86px;
+      padding:0 34px;
+      display:grid;
+      grid-template-columns:280px 1fr 220px;
+      align-items:center;
+      gap:20px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+    .brand img{
+      width:78px;
+      height:auto;
+      object-fit:contain;
+    }
+    .brand-name{
+      font-family:'Cormorant Garamond',serif;
+      font-size:28px;
+      font-weight:600;
+      letter-spacing:.2px;
+      color:var(--navy);
+      line-height:1;
+      margin-top:3px;
+    }
+    .nav-links{
+      display:flex;
+      justify-content:center;
+      gap:34px;
+      flex-wrap:wrap;
+    }
+    .nav-links a{
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .nav-links a:hover{color:var(--navy-2)}
+    .nav-cta{
+      justify-self:end;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      min-height:54px;
+      padding:0 24px;
+      border-radius:10px;
+      font-size:15px;
+      font-weight:700;
+      letter-spacing:.03em;
+      transition:.2s ease;
+      border:1px solid transparent;
+      cursor:pointer;
+    }
+    .btn-primary{
+      background:var(--navy);
+      color:#fff;
+      box-shadow:var(--shadow);
+    }
+    .btn-primary:hover{background:#081a34}
+    .btn-outline{
+      background:rgba(255,255,255,.75);
+      color:var(--navy);
+      border-color:#bfc8d2;
+    }
+    .btn-outline:hover{
+      background:#fff;
+      border-color:var(--navy);
+    }
+    .arrow{font-size:18px;line-height:1}
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns:37% 63%;
+      min-height:335px;
+      background:linear-gradient(90deg,#f4efe8 0%,#f6f2eb 35%,#f7f4ee 100%);
+      overflow:hidden;
+    }
+    .hero-copy{
+      padding:54px 42px 38px 42px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      background:
+        linear-gradient(90deg,rgba(246,242,235,.94),rgba(246,242,235,.88)),
+        url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1000&q=80') center/cover;
+    }
+    .eyebrow{
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--navy);
+      margin:18px 0 16px;
+    }
+    h1,h2,h3,h4{
+      font-family:'Cormorant Garamond',serif;
+      color:var(--navy);
+      margin:0;
+      line-height:.97;
+      font-weight:600;
+    }
+    .hero h1{
+      font-size:72px;
+      max-width:520px;
+      margin-bottom:18px;
+    }
+    .hero-copy p{
+      max-width:460px;
+      font-size:16px;
+      line-height:1.65;
+      color:#2a3b50;
+      margin:0 0 22px;
+    }
+    .hero-actions{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .hero-media{
+      min-height:335px;
+      background:
+        linear-gradient(rgba(9,18,35,.08),rgba(9,18,35,.08)),
+        url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80') center/cover;
+      position:relative;
     }
 
-    header img {
-      height: 55px;
+    /* Trust bar */
+    .trustbar{
+      background:var(--navy);
+      color:#fff;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      align-items:stretch;
+    }
+    .trust-item{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      padding:18px 28px;
+      border-right:1px solid rgba(255,255,255,.16);
+    }
+    .trust-item:last-child{border-right:none}
+    .trust-icon{
+      width:42px;
+      height:42px;
+      border:2px solid rgba(255,255,255,.92);
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:20px;
+      flex:0 0 auto;
+    }
+    .trust-text strong{
+      display:block;
+      font-size:14px;
+      font-weight:700;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      line-height:1.4;
     }
 
-    nav a {
-      margin-left: 25px;
-      text-decoration: none;
-      color: white;
-      font-weight: 500;
+    /* Three-panel middle row */
+    .tri-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .panel{
+      min-height:315px;
+      border-right:1px solid var(--line);
+      background:var(--cream);
+    }
+    .panel:last-child{border-right:none}
+    .panel-inner{padding:34px 34px 28px}
+    .tag{
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:#617086;
+      margin-bottom:12px;
+    }
+    .panel h2{
+      font-size:34px;
+      margin-bottom:14px;
+    }
+    .panel p{
+      font-size:15px;
+      line-height:1.7;
+      color:#334257;
+      margin:0 0 14px;
+    }
+    .learn-link,
+    .view-link{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-top:6px;
+      color:var(--navy);
+      font-weight:700;
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .about-layout{
+      display:grid;
+      grid-template-columns:48% 52%;
+      height:100%;
+    }
+    .about-copy{padding:34px}
+    .about-image{
+      min-height:315px;
+      background:url('https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=1200&q=80') center/cover;
     }
 
-    .hero {
-      height: 100vh;
-      background: url('https://images.unsplash.com/photo-1493809842364-78817add7ffb') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
+    .properties{
+      text-align:center;
+      padding:30px 26px 26px;
+    }
+    .properties h2{
+      font-size:34px;
+      margin-bottom:8px;
+    }
+    .properties .sub{
+      color:#455468;
+      font-size:15px;
+      line-height:1.65;
+      max-width:520px;
+      margin:0 auto 18px;
+    }
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    .card{
+      background:#fff;
+      border:1px solid #ddd7cf;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 6px 18px rgba(0,0,0,.05);
+    }
+    .card-img{
+      height:108px;
+      background-size:cover;
+      background-position:center;
+    }
+    .card-body{
+      padding:12px 10px 14px;
+    }
+    .card-title{
+      font-size:12px;
+      font-weight:800;
+      color:var(--navy);
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      margin-bottom:4px;
+    }
+    .card-loc{
+      font-size:11px;
+      color:#6b7685;
+      letter-spacing:.08em;
+      text-transform:uppercase;
     }
 
-    .hero h1 {
-      font-size: 42px;
-      line-height: 1.3;
-      font-family: 'Playfair Display', serif;
+    .partner-layout{
+      display:grid;
+      grid-template-columns:64% 36%;
+      height:100%;
+    }
+    .partner-copy{
+      padding:34px 30px 20px 34px;
+    }
+    .partner-copy h2{
+      font-size:34px;
+      margin-bottom:14px;
+    }
+    .partner-copy p{
+      font-size:14px;
+      line-height:1.7;
+      color:#334257;
+      margin:0 0 10px;
+    }
+    .partner-image{
+      background:url('https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80') center/cover;
+      min-height:315px;
+    }
+    .feature-strip{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin:18px 0 18px;
+      text-align:center;
+    }
+    .mini{
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      color:var(--navy);
+      text-transform:uppercase;
+      line-height:1.5;
+    }
+    .partner-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
     }
 
-    .highlight {
-      color: #4da3ff;
+    /* Bottom row */
+    .bottom-grid{
+      display:grid;
+      grid-template-columns:52% 24% 24%;
+      border-top:1px solid var(--line);
+    }
+    .how{
+      background:var(--navy);
+      color:#fff;
+      padding:26px 32px 24px;
+    }
+    .how .tag{color:#d6dfeb}
+    .how h2{
+      color:#fff;
+      font-size:34px;
+      margin-bottom:22px;
+      text-align:center;
+    }
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .step{text-align:left}
+    .step-icon{
+      width:52px;
+      height:52px;
+      border-radius:50%;
+      background:#fff;
+      color:var(--navy);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:22px;
+      margin-bottom:14px;
+    }
+    .step h4{
+      font-family:'Inter',sans-serif;
+      color:#fff;
+      font-size:16px;
+      font-weight:800;
+      text-transform:uppercase;
+      line-height:1.35;
+      margin:0 0 8px;
+    }
+    .step p{
+      color:#e5ebf5;
+      font-size:13px;
+      line-height:1.7;
+      margin:0;
     }
 
-    .hero button {
-      margin-top: 25px;
-      padding: 14px 30px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      background: #4da3ff;
-      color: white;
+    .reviews,
+    .contact{
+      background:#f7f4ee;
+      border-left:1px solid var(--line);
+      padding:26px 28px;
+    }
+    .reviews .tag,
+    .contact .tag{text-align:center}
+    .reviews h2,
+    .contact h2{
+      font-size:26px;
+      margin-bottom:14px;
+      text-align:center;
+    }
+    .quote-mark{
+      text-align:center;
+      font-size:48px;
+      color:var(--navy);
+      line-height:1;
+      margin-top:4px;
+    }
+    .quote{
+      text-align:center;
+      font-size:15px;
+      line-height:1.75;
+      color:#2f3f53;
+      margin:8px 0 14px;
+    }
+    .stars{
+      text-align:center;
+      color:var(--navy);
+      letter-spacing:.2em;
+      font-size:20px;
     }
 
-    section {
-      padding: 80px 20px;
-      text-align: center;
+    .contact h2{
+      text-align:left;
+      margin-bottom:8px;
+    }
+    .contact .tag{text-align:left}
+    .contact p{
+      color:#334257;
+      font-size:15px;
+      line-height:1.7;
+      margin:0 0 14px;
+    }
+    .contact-list{
+      display:grid;
+      gap:12px;
+      margin:12px 0 18px;
+    }
+    .contact-line{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      color:#213247;
+      font-size:15px;
+      line-height:1.5;
+    }
+    .contact-btn{
+      width:100%;
     }
 
-    .light {
-      background: #f5f5f5;
-      color: #111;
+    /* Footer */
+    .footer{
+      background:var(--navy);
+      color:#fff;
+      display:grid;
+      grid-template-columns:28% 42% 30%;
+      align-items:center;
+      gap:10px;
+      padding:18px 30px;
+      border-top:1px solid rgba(255,255,255,.1);
+    }
+    .footer-brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .footer-brand img{
+      width:68px;
+      height:auto;
+    }
+    .footer-name{
+      font-family:'Cormorant Garamond',serif;
+      font-size:32px;
+      line-height:1;
+    }
+    .footer-copy{
+      text-align:center;
+      font-size:14px;
+      color:#dbe5f2;
+    }
+    .footer-right{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      gap:22px;
+      color:#dbe5f2;
+      font-size:14px;
+      flex-wrap:wrap;
+    }
+    .social{
+      display:flex;
+      gap:16px;
+      font-size:24px;
+      margin-left:10px;
     }
 
-    .dark {
-      background: #0b1a2a;
+    /* Responsive */
+    @media (max-width: 1200px){
+      .nav{
+        grid-template-columns:1fr;
+        padding:18px 24px;
+        gap:14px;
+      }
+      .nav-cta{justify-self:start}
+      .hero{grid-template-columns:1fr}
+      .hero-media{min-height:320px}
+      .tri-grid,
+      .bottom-grid{
+        grid-template-columns:1fr;
+      }
+      .panel,
+      .reviews,
+      .contact{
+        border-right:none;
+        border-left:none;
+        border-bottom:1px solid var(--line);
+      }
+      .about-layout,
+      .partner-layout{
+        grid-template-columns:1fr;
+      }
+      .cards{grid-template-columns:repeat(2,1fr)}
+      .steps{grid-template-columns:1fr}
+      .footer{
+        grid-template-columns:1fr;
+        text-align:center;
+      }
+      .footer-brand,
+      .footer-right{
+        justify-content:center;
+      }
     }
 
-    .logo {
-      max-width: 260px;
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      margin-bottom: 10px;
-      font-size: 28px;
-    }
-
-    p {
-      max-width: 500px;
-      margin: auto;
-      opacity: 0.8;
+    @media (max-width: 700px){
+      .nav-links{
+        justify-content:flex-start;
+        gap:18px;
+      }
+      .hero h1{font-size:52px}
+      .cards{grid-template-columns:1fr}
+      .trustbar{grid-template-columns:1fr}
+      .trust-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.14)}
+      .trust-item:last-child{border-bottom:none}
+      .hero-copy{padding:38px 24px}
+      .panel-inner,
+      .about-copy,
+      .partner-copy,
+      .how,
+      .reviews,
+      .contact{padding:24px}
+      .footer-name{font-size:28px}
     }
   </style>
 </head>
-
 <body>
+  <div class="site">
 
-<header>
-  <img src="https://i.imgur.com/YOURLOGO.png" alt="Riverside Luxe Retreats">
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Properties</a>
-    <a href="#">Contact</a>
-  </nav>
-</header>
+    <header class="topbar">
+      <nav class="nav">
+        <a class="brand" href="#">
+          <img src="https://raw.githubusercontent.com/Ceoriverside26/My-website-/main/logo.png" alt="Riverside Luxe Retreats Logo">
+          <div class="brand-name">Riverside Luxe Retreats</div>
+        </a>
 
-<div class="hero">
-  <div>
-    <h1>
-      Luxury Stays.<br>
-      Prime Locations.<br>
-      <span class="highlight">Exceptional Returns.</span>
-    </h1>
-    <button>Book a Stay</button>
+        <div class="nav-links">
+          <a href="#properties">Properties</a>
+          <a href="#partner">Partner With Us</a>
+          <a href="#about">About</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <a class="btn btn-primary nav-cta" href="#contact">
+          Book Your Stay <span class="arrow">→</span>
+        </a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>Luxury Stays.<br>Unforgettable Views.</h1>
+        <div class="eyebrow">Premium Short-Term Rentals in Jacksonville</div>
+        <p>
+          Professionally managed, fully furnished retreats designed for comfort,
+          convenience, and elevated experiences.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Book Your Stay <span class="arrow">→</span></a>
+          <a class="btn btn-outline" href="#partner">Partner With Us <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="hero-media"></div>
+    </section>
+
+    <section class="trustbar">
+      <div class="trust-item">
+        <div class="trust-icon">⌂</div>
+        <div class="trust-text"><strong>Professionally<br>Managed</strong></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">⌖</div>
+        <div class="trust-text"><strong>Prime Jacksonville<br>Locations</strong></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">☲</div>
+        <div class="trust-text"><strong>Fully Furnished<br>& Turnkey</strong></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🛡</div>
+        <div class="trust-text"><strong>Consistent Guest<br>Experience</strong></div>
+      </div>
+    </section>
+
+    <section class="tri-grid">
+      <div class="panel" id="about">
+        <div class="about-layout">
+          <div class="about-copy">
+            <div class="tag">About Us</div>
+            <h2>A Higher Standard of Short-Term Living</h2>
+            <p>
+              Riverside Luxe Retreats specializes in premium short-term rental
+              and corporate housing solutions in Jacksonville, Florida.
+            </p>
+            <p>
+              We provide thoughtfully designed, fully furnished spaces for
+              business travelers, traveling professionals, and guests seeking
+              a more refined stay.
+            </p>
+            <a href="#contact" class="learn-link">Learn More <span class="arrow">→</span></a>
+          </div>
+          <div class="about-image"></div>
+        </div>
+      </div>
+
+      <div class="panel" id="properties">
+        <div class="properties">
+          <div class="tag">Our Properties</div>
+          <h2>Curated Stays. Designed for You.</h2>
+          <p class="sub">
+            Explore our collection of modern, fully furnished properties in
+            Jacksonville’s most desirable neighborhoods.
+          </p>
+
+          <div class="cards">
+            <div class="card">
+              <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80');"></div>
+              <div class="card-body">
+                <div class="card-title">Riverside Loft</div>
+                <div class="card-loc">Downtown</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80');"></div>
+              <div class="card-body">
+                <div class="card-title">San Marco Suite</div>
+                <div class="card-loc">San Marco</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=800&q=80');"></div>
+              <div class="card-body">
+                <div class="card-title">The Coastal Escape</div>
+                <div class="card-loc">Jacksonville Beach</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80');"></div>
+              <div class="card-body">
+                <div class="card-title">The Executive Stay</div>
+                <div class="card-loc">Southside</div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#contact" class="view-link">View All Properties <span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="panel" id="partner">
+        <div class="partner-layout">
+          <div class="partner-copy">
+            <div class="tag">Partner With Us</div>
+            <h2>Maximize Your Property’s Potential</h2>
+            <p>
+              We partner with property owners and apartment communities to
+              transform standard units into high-performing short-term rentals.
+            </p>
+            <p>
+              Our team handles everything from furnishing and design to guest
+              management and maintenance—ensuring your property is well-maintained
+              and generating consistent income.
+            </p>
+
+            <div class="feature-strip">
+              <div class="mini">Increased<br>Income Potential</div>
+              <div class="mini">Professionally<br>Managed Units</div>
+              <div class="mini">Reliable & Consistent<br>Occupancy</div>
+            </div>
+
+            <div class="partner-actions">
+              <a class="btn btn-primary" href="#contact">Submit Your Property</a>
+              <a class="btn btn-outline" href="#contact">Schedule a Call</a>
+            </div>
+          </div>
+          <div class="partner-image"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottom-grid">
+      <div class="how">
+        <div class="tag">How It Works</div>
+        <h2>Simple. Professional. Profitable.</h2>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-icon">⌂</div>
+            <h4>We Secure & Design the Space</h4>
+            <p>
+              We transform the unit into a fully furnished, high-end living space.
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-icon">☷</div>
+            <h4>We Manage Everything</h4>
+            <p>
+              From bookings to guest communication and cleaning, we handle it all.
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-icon">$</div>
+            <h4>You Receive Consistent Income</h4>
+            <p>
+              Enjoy a hands-off experience while your property performs.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews" id="reviews">
+        <div class="tag">Guest Reviews</div>
+        <div class="quote-mark">“</div>
+        <p class="quote">
+          Beautiful space, amazing location, and outstanding communication.
+          Riverside Luxe Retreats made our stay effortless.
+        </p>
+        <div class="stars">★★★★★</div>
+      </div>
+
+      <div class="contact" id="contact">
+        <div class="tag">Get In Touch</div>
+        <h2>We’re here to help.</h2>
+        <p>Reach out to get started.</p>
+
+        <div class="contact-list">
+          <div class="contact-line"><strong>☎</strong> (904) 123-4567</div>
+          <div class="contact-line"><strong>✉</strong> info@riversideluxeretreats.com</div>
+          <div class="contact-line"><strong>⌖</strong> 50 North Laura St Suite 2500<br>Jacksonville, FL 32202</div>
+        </div>
+
+        <a class="btn btn-primary contact-btn" href="mailto:info@riversideluxeretreats.com">
+          Send a Message <span class="arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-brand">
+        <img src="https://raw.githubusercontent.com/Ceoriverside26/My-website-/main/logo.png" alt="Riverside Luxe Retreats Logo">
+        <div class="footer-name">Riverside Luxe Retreats</div>
+      </div>
+
+      <div class="footer-copy">
+        © 2026 Riverside Luxe Retreats LLC. All rights reserved.
+      </div>
+
+      <div class="footer-right">
+        <span>Privacy Policy</span>
+        <span>Terms of Service</span>
+        <div class="social">
+          <span>f</span>
+          <span>◎</span>
+          <span>in</span>
+        </div>
+      </div>
+    </footer>
+
   </div>
-</div>
-
-<section class="light">
-  <img src="https://i.imgur.com/<header style="display:flex; align-items:center; padding:20px 40px; background:#0b1a2a;">
-  <img src="logo.png" alt="Riverside Luxe Retreats Logo" style="height: 60px; width: auto;">
-</header> class="logo">
-  <h2>Premium Rental Experiences</h2>
-  <p>We turn properties into fully managed luxury stays for guests and investors.</p>
-</section>
-
-<section class="dark">
-  <h2>Let’s Work Together</h2>
-  <p>Contact us to get started with Riverside Luxe Retreats.</p>
-</section>
-
 </body>
 </html>

@@ -1,101 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Riverside Luxe Retreats</title>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-body { margin:0; font-family: Arial; }
-header { display:flex; justify-content:space-between; align-items:center; padding:20px; background:white; }
-nav a { margin:0 10px; text-decoration:none; color:#1c2b44; }
-.brand img { height:80px; }
-
-.hero {
-  height:90vh;
-  background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover;
-  display:flex;
-  align-items:center;
-  padding:40px;
-  color:white;
+:root{
+  --navy:#10284a;
+  --navy-dark:#0a1d36;
+  --cream:#f5f1ea;
+  --cream-2:#f9f6f0;
+  --text:#1a2b40;
+  --muted:#67778a;
+  --line:#d7d0c6;
+  --white:#ffffff;
 }
-
-h1 { font-size:48px; }
-.btn { background:#162a4a; color:white; padding:12px 20px; text-decoration:none; }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#ece7de;color:var(--text);font-family:'Inter',sans-serif}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.site{max-width:1440px;margin:0 auto;background:var(--cream)}
+.topbar{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #e7e0d5}
+.topbar-inner{display:grid;grid-template-columns:330px 1fr 230px;align-items:center;gap:20px;min-height:88px;padding:0 34px}
+.brand{display:flex;align-items:center;gap:14px;min-width:0}
+.brand img{height:100px;width:auto;object-fit:contain}
+.brand-text{display:flex;flex-direction:column;justify-content:center}
+.brand h1{margin:0;font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1;color:var(--navy);font-weight:600}
+.brand small{margin-top:4px;color:#778395;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+nav{display:flex;justify-content:center;align-items:center;gap:30px;flex-wrap:wrap}
+nav a{font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--text);text-transform:uppercase}
+.cta{justify-self:end;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:0 24px;border-radius:10px;background:var(--navy);color:#fff;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.arrow{font-size:18px;line-height:1}
+.hero{display:grid;grid-template-columns:39% 61%;min-height:365px;background:var(--cream-2)}
+.hero-copy{padding:54px 42px 42px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(90deg, rgba(249,246,240,.94), rgba(249,246,240,.88)),url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat}
+.headline{font-family:'Cormorant Garamond',serif;color:var(--navy);font-size:70px;line-height:.92;font-weight:600;margin:0 0 14px}
+.eyebrow{font-size:13px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--navy);margin-bottom:14px}
+.hero-copy p{max-width:470px;font-size:16px;line-height:1.7;color:#2c3c51;margin:0 0 24px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 22px;border-radius:8px;font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border:1px solid transparent}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-secondary{background:transparent;border-color:#aeb7c2;color:var(--navy)}
+.hero-media{background:linear-gradient(rgba(0,0,0,.06), rgba(0,0,0,.06)),url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;min-height:365px}
+.trustbar{display:grid;grid-template-columns:repeat(4,1fr);background:var(--navy);color:#fff}
+.trust-item{display:flex;align-items:center;gap:18px;padding:18px 26px;border-right:1px solid rgba(255,255,255,.14)}
+.trust-item:last-child{border-right:none}
+.trust-icon{width:46px;height:46px;border:2px solid rgba(255,255,255,.88);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;flex:0 0 auto}
+.trust-text{font-size:14px;font-weight:800;line-height:1.5;letter-spacing:.05em;text-transform:uppercase}
+.tri-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.panel{min-height:316px;border-right:1px solid var(--line);background:var(--cream)}
+.panel:last-child{border-right:none}
+.tag{font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#6d7c8e;margin-bottom:12px}
+.panel h2{font-family:'Cormorant Garamond',serif;color:var(--navy);font-size:34px;line-height:1.04;margin:0 0 12px;font-weight:600}
+.panel p{color:#36475c;font-size:14px;line-height:1.72;margin:0 0 12px}
+.learn-link{display:inline-flex;align-items:center;gap:8px;margin-top:10px;color:var(--navy);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.about-layout{display:grid;grid-template-columns:48% 52%;height:100%}
+.about-copy{padding:34px}
+.about-image{min-height:316px;background:url('https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat}
+.properties-panel{padding:30px 24px 24px;text-align:center}
+.properties-panel .sub{max-width:520px;margin:0 auto 16px;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0 14px}
+.card{background:#fff;border:1px solid #ddd6cb;border-radius:12px;overflow:hidden}
+.card-img{height:106px;background-size:cover;background-position:center}
+.card-body{padding:12px 10px 14px}
+.card-title{color:var(--navy);font-size:12px;font-weight:800;line-height:1.4;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.card-loc{color:#6b7989;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.partner-layout{display:grid;grid-template-columns:64% 36%;height:100%}
+.partner-copy{padding:34px 30px 24px 34px}
+.partner-copy .features-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 18px;text-align:center}
+.mini{font-size:11px;line-height:1.5;text-transform:uppercase;font-weight:800;color:var(--navy)}
+.partner-actions{display:flex;gap:10px;flex-wrap:wrap}
+.partner-image{min-height:316px;background:url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat}
+.bottom-grid{display:grid;grid-template-columns:52% 24% 24%;border-bottom:1px solid var(--line)}
+.how{background:var(--navy);color:#fff;padding:24px 30px}
+.how .tag{color:#d3deeb}
+.how h2{color:#fff;text-align:center;font-family:'Cormorant Garamond',serif;font-size:34px;margin:0 0 22px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.step-icon{width:52px;height:52px;border-radius:50%;background:#fff;color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+.step h4{margin:0 0 8px;font-size:15px;line-height:1.35;color:#fff;font-weight:800;text-transform:uppercase}
+.step p{margin:0;color:#e5edf6;font-size:13px;line-height:1.65}
+.reviews,.contact{background:#f7f4ee;border-left:1px solid var(--line);padding:24px 28px}
+.reviews{text-align:center}
+.reviews h3,.contact h3{margin:0 0 12px;font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--navy);font-weight:600}
+.quote-mark{font-size:52px;line-height:1;color:var(--navy)}
+.quote{color:#334458;font-size:15px;line-height:1.75;margin:6px 0 14px}
+.stars{color:var(--navy);font-size:20px;letter-spacing:.2em}
+.contact p{color:#334458;font-size:15px;line-height:1.65;margin:0 0 14px}
+.contact-list{display:grid;gap:12px;margin:12px 0 16px}
+.contact-line{display:flex;gap:12px;align-items:flex-start;color:#22344b;font-size:15px;line-height:1.55}
+.contact-btn{width:100%}
+.footer{display:grid;grid-template-columns:32% 38% 30%;align-items:center;gap:12px;background:var(--navy);color:#fff;padding:18px 28px}
+.footer-brand{display:flex;align-items:center;gap:12px}
+.footer-brand img{width:74px;height:auto}
+.footer-brand-name{font-family:'Cormorant Garamond',serif;font-size:32px;line-height:1}
+.footer-copy{text-align:center;color:#dce5f0;font-size:14px}
+.footer-right{display:flex;justify-content:flex-end;align-items:center;gap:18px;flex-wrap:wrap;color:#dce5f0;font-size:14px}
+.social{display:flex;gap:16px;font-size:23px}
+@media (max-width:1200px){
+  .topbar-inner{grid-template-columns:1fr;padding:16px 22px 18px;gap:12px}
+  nav{justify-content:flex-start}
+  .cta{justify-self:start}
+  .hero,.tri-grid,.bottom-grid,.about-layout,.partner-layout{grid-template-columns:1fr}
+  .hero-media{min-height:320px}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .panel,.reviews,.contact{border-right:none;border-left:none;border-bottom:1px solid var(--line)}
+  .footer{grid-template-columns:1fr;text-align:center}
+  .footer-brand,.footer-right{justify-content:center}
+}
+@media (max-width:768px){
+  .brand img{height:70px}
+  .headline{font-size:52px}
+  .hero-copy{padding:34px 24px}
+  .cards,.partner-copy .features-mini,.steps,.trustbar{grid-template-columns:1fr}
+  .trust-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.14)}
+  .trust-item:last-child{border-bottom:none}
+  .footer-brand-name{font-size:28px}
+}
 </style>
 </head>
-
 <body>
+<div class="site">
 
-<header>
-  <div class="brand">
-    <img src="https://raw.githubusercontent.com/Ceoriverside26/My-website-/main/riverside_luxe_logo.png">
-  </div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="brand">
+        <img src="https://raw.githubusercontent.com/Ceoriverside26/My-website-/main/riverside_luxe_logo.png" alt="Riverside Luxe Retreats Logo">
+        <div class="brand-text">
+          <h1>Riverside Luxe Retreats</h1>
+          <small>Luxury Stays in Jacksonville</small>
+        </div>
+      </a>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="properties.html">Properties</a>
-    <a href="partner.html">Partner</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+      <nav>
+        <a href="properties.html">Properties</a>
+        <a href="partner.html">Partner With Us</a>
+        <a href="about.html">About</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="contact.html">Contact</a>
+      </nav>
 
-<section class="hero">
-  <div>
-    <h1>Luxury Stays.<br>Unforgettable Views.</h1>
-    <a href="contact.html" class="btn">Book Your Stay</a>
-  </div>
-</section>
+      <a href="contact.html" class="cta">Book Your Stay <span class="arrow">→</span></a>
+    </div>
+  </header>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-<title>About - Riverside Luxe Retreats</title>
-</head>
+  <section class="hero">
+    <div class="hero-copy">
+      <h2 class="headline">Luxury Stays.<br>Unforgettable Views.</h2>
+      <div class="eyebrow">Premium Short-Term Rentals in Jacksonville</div>
+      <p>Professionally managed, fully furnished retreats designed for comfort, convenience, and elevated experiences.</p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn btn-primary">Book Your Stay <span class="arrow">→</span></a>
+        <a href="partner.html" class="btn btn-secondary">Partner With Us <span class="arrow">→</span></a>
+      </div>
+    </div>
+    <div class="hero-media"></div>
+  </section>
 
-<body>
-<h1>About Us</h1>
-<p>We provide luxury short-term rentals in Jacksonville.</p>
-<a href="index.html">← Back Home</a>
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Properties</title>
-</head>
+  <section class="trustbar">
+    <div class="trust-item"><div class="trust-icon">⌂</div><div class="trust-text">Professionally<br>Managed</div></div>
+    <div class="trust-item"><div class="trust-icon">⌖</div><div class="trust-text">Prime Jacksonville<br>Locations</div></div>
+    <div class="trust-item"><div class="trust-icon">☲</div><div class="trust-text">Fully Furnished<br>& Turnkey</div></div>
+    <div class="trust-item"><div class="trust-icon">🛡</div><div class="trust-text">Consistent Guest<br>Experience</div></div>
+  </section>
 
-<body>
-<h1>Our Properties</h1>
-<p>Explore our luxury stays across Jacksonville.</p>
-<a href="index.html">← Back Home</a>
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Partner With Us</title>
-</head>
+  <section class="tri-grid">
+    <div class="panel">
+      <div class="about-layout">
+        <div class="about-copy">
+          <div class="tag">About Us</div>
+          <h2>A Higher Standard of Short-Term Living</h2>
+          <p>Riverside Luxe Retreats specializes in premium short-term rental and corporate housing solutions in Jacksonville, Florida.</p>
+          <p>We provide thoughtfully designed, fully furnished spaces for business travelers, traveling professionals, and guests seeking a more refined stay.</p>
+          <a href="about.html" class="learn-link">Learn More <span class="arrow">→</span></a>
+        </div>
+        <div class="about-image"></div>
+      </div>
+    </div>
 
-<body>
-<h1>Partner With Us</h1>
-<p>We help property owners maximize income.</p>
-<a href="index.html">← Back Home</a>
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Contact</title>
-</head>
+    <div class="panel">
+      <div class="properties-panel">
+        <div class="tag">Our Properties</div>
+        <h2>Curated Stays. Designed for You.</h2>
+        <p class="sub">Explore our collection of modern, fully furnished properties in Jacksonville’s most desirable neighborhoods.</p>
 
-<body>
-<h1>Contact Us</h1>
-<p>Email: info@riversideluxeretreats.com</p>
-<p>Phone: (904) 123-4567</p>
-<a href="index.html">← Back Home</a>
+        <div class="cards">
+          <a href="properties.html" class="card">
+            <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="card-body"><div class="card-title">Riverside Loft</div><div class="card-loc">Downtown</div></div>
+          </a>
+          <a href="properties.html" class="card">
+            <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="card-body"><div class="card-title">San Marco Suite</div><div class="card-loc">San Marco</div></div>
+          </a>
+          <a href="properties.html" class="card">
+            <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="card-body"><div class="card-title">The Coastal Escape</div><div class="card-loc">Jacksonville Beach</div></div>
+          </a>
+          <a href="properties.html" class="card">
+            <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="card-body"><div class="card-title">The Executive Stay</div><div class="card-loc">Southside</div></div>
+          </a>
+        </div>
+
+        <a href="properties.html" class="learn-link">View All Properties <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="partner-layout">
+        <div class="partner-copy">
+          <div class="tag">Partner With Us</div>
+          <h2>Maximize Your Property’s Potential</h2>
+          <p>We partner with property owners and apartment communities to transform standard units into high-performing short-term rentals.</p>
+          <p>Our team handles everything from furnishing and design to guest management and maintenance—ensuring your property is well-maintained and generating consistent income.</p>
+
+          <div class="features-mini">
+            <div class="mini">Increased<br>Income Potential</div>
+            <div class="mini">Professionally<br>Managed Units</div>
+            <div class="mini">Reliable & Consistent<br>Occupancy</div>
+          </div>
+
+          <div class="partner-actions">
+            <a href="partner.html" class="btn btn-primary">Submit Your Property</a>
+            <a href="partner.html" class="btn btn-secondary">Schedule a Call</a>
+          </div>
+        </div>
+        <div class="partner-image"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bottom-grid">
+    <div class="how">
+      <div class="tag">How It Works</div>
+      <h2>Simple. Professional. Profitable.</h2>
+      <div class="steps">
+        <div class="step"><div class="step-icon">⌂</div><h4>We Secure & Design the Space</h4><p>We transform the unit into a fully furnished, high-end living space.</p></div>
+        <div class="step"><div class="step-icon">☷</div><h4>We Manage Everything</h4><p>From bookings to guest communication and cleaning, we handle it all.</p></div>
+        <div class="step"><div class="step-icon">$</div><h4>You Receive Consistent Income</h4><p>Enjoy a hands-off experience while your property performs.</p></div>
+      </div>
+    </div>
+
+    <div class="reviews">
+      <div class="tag">Guest Reviews</div>
+      <div class="quote-mark">“</div>
+      <h3>Guests love the experience.</h3>
+      <p class="quote">Beautiful space, amazing location, and outstanding communication. Riverside Luxe Retreats made our stay effortless.</p>
+      <div class="stars">★★★★★</div>
+    </div>
+
+    <div class="contact">
+      <div class="tag">Get In Touch</div>
+      <h3>We’re here to help.</h3>
+      <p>Reach out to get started.</p>
+      <div class="contact-list">
+        <div class="contact-line"><strong>☎</strong> (904) 123-4567</div>
+        <div class="contact-line"><strong>✉</strong> info@riversideluxeretreats.com</div>
+        <div class="contact-line"><strong>⌖</strong> 50 North Laura St Suite 2500<br>Jacksonville, FL 32202</div>
+      </div>
+      <a href="contact.html" class="btn btn-primary contact-btn">Send a Message <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <img src="https://raw.githubusercontent.com/Ceoriverside26/My-website-/main/riverside_luxe_logo.png" alt="Riverside Luxe Retreats Logo">
+      <div class="footer-brand-name">Riverside Luxe Retreats</div>
+    </div>
+    <div class="footer-copy">© 2026 Riverside Luxe Retreats LLC. All rights reserved.</div>
+    <div class="footer-right">
+      <span>Privacy Policy</span>
+      <span>Terms of Service</span>
+      <div class="social"><span>f</span><span>◎</span><span>in</span></div>
+    </div>
+  </footer>
+
+</div>
 </body>
 </html>

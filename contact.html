@@ -53,14 +53,22 @@ button{background:#10284a;color:#fff;border:none;border-radius:10px;padding:14px
     <div class="line">✉ operations@riversideluxeretreats.com</div>
     <div class="line">⌖ 50 North Laura St Suite 2500<br>Jacksonville, FL 32202</div>
   </div>
+<div class="box">
+  <h3>Send a Message</h3>
 
-  <div class="box">
-    <h3>Send a Message</h3>
-    <input type="text" placeholder="Your Name">
-    <input type="email" placeholder="Your Email">
-    <textarea rows="5" placeholder="Your Message"></textarea>
-    <button>Send Message</button>
-  </div>
+  <form action="mailto:operations@riversideluxeretreats.com" method="POST" enctype="text/plain">
+    
+    <input type="text" name="Name" placeholder="Your Name" required>
+
+    <input type="email" name="Email" placeholder="Your Email" required>
+
+    <textarea name="Message" rows="5" placeholder="Your Message" required></textarea>
+
+    <button type="submit">Send Message</button>
+
+  </form>
+</div>
+  
 </section>
 </div>
 </body>
